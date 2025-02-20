@@ -1,0 +1,15 @@
+{
+  "autoload": {
+    "psr-4": {
+      "TestAssignment\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TestAssignment\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  }
+}
