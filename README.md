@@ -43,5 +43,5 @@ The project includes PHPUnit tests covering multiple scenarios:
 Run the tests with:
 
 ```bash
-php vendor/bin/phpunit
-```
+ php vendor/bin/phpunit .\tests\FileComparatorTest.php
+ ```
