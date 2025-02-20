@@ -7,19 +7,19 @@ class FileComparator
 {
     public function compareFiles(string $file1, string $file2): void
     {
-        $array1 = file($file1, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        $array2 = file($file2, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        $output1 = array_diff($array1, $array2);
-        $output2 = array_diff($array2, $array1);
-        $output1Content = implode("\n", $output1);
-        $output2Content = implode("\n", $output2);
-        if ($output1Content !== '') {
-            $output1Content .= "\n";
+        $lines1 = file($file1, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $lines2 = file($file2, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        if (count($lines1) === 1) {
+            $lines1 = str_split(trim($lines1[0]));
         }
-        if ($output2Content !== '') {
-            $output2Content .= "\n";
+        if (count($lines2) === 1) {
+            $lines2 = str_split(trim($lines2[0]));
         }
-        file_put_contents('output1.txt', $output1Content);
-        file_put_contents('output2.txt', $output2Content);
+        $output1 = array_diff($lines1, $lines2);
+        $output2 = array_diff($lines2, $lines1);
+        $content1 = $output1 !== [] ? implode("\n", $output1) . "\n" : '';
+        $content2 = $output2 !== [] ? implode("\n", $output2) . "\n" : '';
+        file_put_contents('output1.txt', $content1);
+        file_put_contents('output2.txt', $content2);
     }
 }
